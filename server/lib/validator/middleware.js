@@ -38,11 +38,13 @@ function validateMiddleware(req, next, schema) {
     next();
 }
 
-function flatten(array){
+function flatten(array) {
     var flat = [];
-    for (var i = 0, l = array.length; i < l; i++){
+    for (var i = 0, l = array.length; i < l; i++) {
         var type = Object.prototype.toString.call(array[i]).split(' ').pop().split(']').shift().toLowerCase();
-        if (type) {flat = flat.concat(/^(array|collection|arguments|object)$/.test(type) ? flatten(array[i]) : array[i]); }
+        if (type) {
+            flat = flat.concat(/^(array|collection|arguments|object)$/.test(type) ? flatten(array[i]) : array[i]);
+        }
     }
     return flat;
 }
