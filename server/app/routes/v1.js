@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express.Router();
 var controllers = require('../controllers');
+var auth = require('../../lib/auth');
 
 app.get('/api/v1/actions', controllers.actions.index);
 
@@ -38,7 +39,7 @@ app.get('/api/v1/tests', controllers.tests.index);
 
 app.get('/api/v1/test_questions', controllers.test_questions.index);
 
-app.get('/api/v1/users', controllers.users.index);
+app.get('/api/v1/users', auth, controllers.users.index);
 app.post('/api/v1/users', controllers.users.create);
 
 app.post('/api/v1/sessions', controllers.sessions.create);
